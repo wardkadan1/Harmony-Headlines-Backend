@@ -48,7 +48,8 @@ app.get("/data/:id", (req, res) => {
   const { id } = req.params;
   const currentData = readData();
 
-  const dataItem = currentData.find((item) => item.id === id);
+  // Convert `id` to a number for comparison
+  const dataItem = currentData.find((item) => item.id === Number(id));
 
   if (dataItem) {
     res.json(dataItem);
