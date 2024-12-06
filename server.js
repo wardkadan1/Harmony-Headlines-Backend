@@ -44,6 +44,19 @@ app.get("/data", (req, res) => {
   res.json(currentData);
 });
 
+app.get("/data/:id", (req, res) => {
+  const { id } = req.params;
+  const currentData = readData();
+
+  const dataItem = currentData.find((item) => item.id === id);
+
+  if (dataItem) {
+    res.json(dataItem);
+  } else {
+    res.status(404).json({ message: "Data not found" });
+  }
+});
+
 app.post("/initial-mood", (req, res) => {
   const { allData } = req.body;
 
@@ -54,18 +67,6 @@ app.post("/initial-mood", (req, res) => {
   writeData(allData);
 
   res.json({ message: "Data overridden successfully", allData });
-});
-
-app.post("/change-mood", (req, res) => {
-  const { desiredNews, adjustedNews } = req.body;
-
-  data.push({ type: "change-mood", desiredNews, adjustedNews });
-  writeData(data);
-
-  res.json({
-    message: "Mood adjustment data saved successfully",
-    adjustedNews,
-  });
 });
 
 app.listen(PORT, () => {
