@@ -1,19 +1,20 @@
 {
-  "name": "server",
+  "name": "harmony-headlines-backend",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "type": "commonjs",
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "dev": "node --watch --env-file-if-exists=.env server.js",
+    "test": "node --test \"test/**/*.test.js\""
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Express API for Harmony Headlines: server-side news fetching, Gemini mood scoring and tone rewriting",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.21.1",
-    "nodemon": "^3.1.7"
+    "express": "^4.21.1"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
